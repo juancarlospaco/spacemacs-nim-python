@@ -25,3 +25,4 @@ rm nim-emacs.png
 - It uses [the Official Nim-mode.](https://github.com/nim-lang/nim-mode)
 - Only tested on Linux. Pull Requests open to everyone!.
 - It uses GUI, has browser-like Tabs, Folder Tree with icons, Minimap, glowing cursor, and more.
+- The Screenshot is the real actual config it provides.
