@@ -14,7 +14,7 @@ cd
 git clone https://github.com/juancarlospaco/spacemacs-nim-python.git
 rm LICENCE
 rm README.md
-nim-emacs.png
+rm nim-emacs.png
 ```
 
 - It creates 1 File `~/.spacemacs` and 1 Folder `~./emacs.d/`.
