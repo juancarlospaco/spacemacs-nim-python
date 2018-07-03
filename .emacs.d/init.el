@@ -219,7 +219,7 @@ This functions should be added to the hooks of major modes for programming."
 
 ;; Paradox GitHub token
 (require 'paradox)
-(setq paradox-github-token "e902c09cb2dcdb2a6adaa96878e85bebb460b202")
+;; (setq paradox-github-token "")
 (paradox-enable)
 
 ;; Tab Bar
