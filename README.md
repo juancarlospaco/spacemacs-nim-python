@@ -20,4 +20,5 @@ git clone https://github.com/juancarlospaco/spacemacs-nim-python.git
 - It requires Python 3 installed.
 - It requires Nim, Nimble, NimSuggest, NimGrep installed [(ChooseNim does this automatically)](https://nim-lang.org/install_unix.html).
 - It uses [the Official Nim-mode.](https://github.com/nim-lang/nim-mode)
-- Only tested on Linux.
+- Only tested on Linux. Pull Requests open to everyone!.
+- It uses GUI, has browser-like Tabs, Folder Tree with icons, Minimap, glowing cursor, and more.
