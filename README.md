@@ -7,6 +7,9 @@ http://spacemacs.org with http://python.org and https://nim-lang.org plugins, +s
 ![Spacemacs](nim-emacs.png)
 
 
+![Spacemacs](temp.png)
+
+
 # Install
 
 ```
