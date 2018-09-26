@@ -1,24 +1,22 @@
-;;; init.el --- Spacemacs Initialization File
-;;
-;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
-;;
-;; Author: Sylvain Benner <sylvain.benner@gmail.com>
-;; URL: https://github.com/syl20bnr/spacemacs
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; License: GPLv3
+;; Garbage Collector GC runs only when when idle, or 1Gb RAM Max allocated if ever happens.
+(setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-;; Without this comment emacs25 adds (package-initialize) here
-;; (package-initialize)
 
-;; Increase gc-cons-threshold, depending on your system you may set it back to a
-;; lower value in your dotfile (function `dotspacemacs/user-config')
-(setq gc-cons-threshold 100000000)
+;; Cache for file handler set to nil for Fast Startup, then Restored after.
+(setq file-name-handler-alist-original file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(run-with-idle-timer
+ 5 nil
+ (lambda ()
+   (setq file-name-handler-alist file-name-handler-alist-original)
+   (makunbound 'file-name-handler-alist-original)
+ ))
 
+
+;; Required, do not remove.
 (defconst spacemacs-version         "0.200.13" "Spacemacs version.")
-(defconst spacemacs-emacs-min-version   "24.4" "Minimal version of Emacs.")
-
+(defconst spacemacs-emacs-min-version   "25.0" "Minimal version of Emacs.")
 (if (not (version<= spacemacs-emacs-min-version emacs-version))
     (error (concat "Your version of Emacs (%s) is too old. "
                    "Spacemacs requires Emacs version %s or above.")
@@ -34,8 +32,8 @@
   (unless (server-running-p) (server-start)))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;; CUSTOM STUFF BELOW ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;; Aca van las cosas personalizadas.;;;;;;;;;;;;;;;;;;;;;
 
 ;; DISABLE spacemacs unwanted stuff.
 (evil-set-initial-state 'ibuffer-mode 'normal)
@@ -43,18 +41,40 @@
 (evil-set-initial-state 'dired-mode 'emacs)
 (evil-set-initial-state 'sunrise-mode 'emacs)
 (add-to-list 'evil-emacs-state-modes 'nav-mode)
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+            (kill-buffer buffer)))))
+;; (define-key global-map [menu-bar options] nil)
+(global-set-key (kbd "C-s") 'save-buffer)
+(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-S-z") 'undo-tree-redo)
+(global-set-key (kbd "C-S-s") nil)
 
-;; UTF-8
+
+;; UTF-8 ALL
 (prefer-coding-system 'utf-8)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setq system-time-locale "C")
 
 
-;; beacon en el cursor.
+;; Cursor Beacon
 (beacon-mode 1)
 
-;; Titulo a full-path-filename + projectname|folder.
+
+;; Execute source code
+(require 'quickrun)
+
+
+;; Syntax Checking
+(flycheck-mode)
+
+
+;; Title = full-path-filename + projectname|folder
 (defun spacemacs//frame-title-format ()
 "Return frame title with current project name, where applicable."
 (let ((file buffer-file-name))
@@ -79,11 +99,6 @@
   "Convert buffer format from Windows to Linux."
   (interactive)
   (set-buffer-file-coding-system 'undecided-unix 't) )
-
-(defun my/linux2windows ()
-  "Convert buffer format from Linux to Windows."
-  (interactive)
-  (set-buffer-file-coding-system 'undecided-dos 't))
 
 (defun my/reopen-as-root ()
   (interactive)
@@ -130,23 +145,54 @@ This functions should be added to the hooks of major modes for programming."
 ;; (load "xyz") ;; best not to include the ending “.el” or “.elc”
 ;; (require 'tool-bar+)
 
-(defun omar-hotel ()
- "another nonce menu function"
- (interactive)
- (message "hotel, motel, holiday inn"))
 
-    (tool-bar-add-item "spell" 'omar-hotel
-               'omar-hotel
-               :help   "Run fonction omar-hotel")
+(defun nim-check-toolbar ()
+ "Nim check on the current file"
+ (interactive)
+ (message "'nim check' on the current file")
+ (nim-check-current-file))
+
+    (tool-bar-add-item "spell" 'nim-check-toolbar
+               'nim-check-toolbar
+               :help   "Nim check on the current file")
+
+(defun nyan ()
+ "Nyan the Screen"
+ (interactive)
+ (message "Nyan the Screen")
+ (zone-nyan-preview))
+
+    (tool-bar-add-item "help" 'zone-nyan-preview
+               'zone-nyan-preview
+               :help   "Nyan the Screen")
+
+
+
+(defun nim-check-current-file ()
+  "Nim check on the current file and revert the buffer"
+  (interactive)
+  (shell-command
+   (format "~/.nimble/bin/nim check --verbosity=0 --hints:off %s"
+       (shell-quote-argument (buffer-file-name))))
+  (revert-buffer t t t))
+
+
+(treemacs)
+(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+(add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?)
+
 
 (nyan-mode)
+(nyan-toggle-wavy-trail)
+(nyan-start-animation)
+
 
 (require 'highlight-tail)
-(setq highlight-tail-colors '(("black" . 0)
-                              ("#bc2525" . 25)
-                              ("black" . 66)))
-;; (setq highlight-tail-steps 14
-;;       highlight-tail-timer 1)
+(setq highlight-tail-colors '(("grey" . 0)
+                              ("red" . 25)
+                              ("blue" . 66)))
+ (setq highlight-tail-steps 10
+       highlight-tail-timer 0.5)
 (highlight-tail-mode)
 
 ;; make whitespace-mode use just basic coloring
@@ -181,7 +227,7 @@ This functions should be added to the hooks of major modes for programming."
 (load-theme 'monokai t)
 
 ;; Auto-braces
-(autopair-global-mode)
+; (autopair-global-mode)
 
 ;; Mini-mapa
 (minimap-mode)
@@ -194,18 +240,19 @@ This functions should be added to the hooks of major modes for programming."
   :ensure t
   :config
   ;; Only show indent-guide in idle-time.
-  (setq indent-guide-delay 0.1))
-;; (indent-guide-global-mode)
+  (setq indent-guide-delay 0.5))
+(indent-guide-global-mode)
 
 (use-package company
   :ensure t
   :config
   ;; enable globally
   (global-company-mode 1))
-(setq company-idle-delay nil)
-(use-package company-quickhelp
-  :ensure t
-  :init (company-quickhelp-mode 1))
+(setq company-idle-delay 0.1)
+
+;(use-package company-quickhelp
+;  :ensure t
+;  :init (company-quickhelp-mode 1))
 
 ;; Lineas largas no se cortan
 (set-default 'truncate-lines t)
@@ -215,19 +262,19 @@ This functions should be added to the hooks of major modes for programming."
 (treemacs-follow-mode t)
 (treemacs-filewatch-mode t)
 (treemacs-fringe-indicator-mode t)
-;; (treemacs-resize-icons 44)
+(treemacs-resize-icons 32)
 
 ;; Paradox GitHub token
 (require 'paradox)
-;; (setq paradox-github-token "")
+(setq paradox-github-token "e902c09cb2dcdb2a6adaa96878e85bebb460b202")
 (paradox-enable)
 
 ;; Tab Bar
 (use-package tabbar
   :ensure t
-  :bind
-  ("<C-S-iso-lefttab>" . tabbar-backward)
-  ("<C-tab>" . tabbar-forward)
+  ;; :bind
+  ;; ("<C-S-iso-lefttab>" . tabbar-backward)
+  ;; ("<C-tab>" . tabbar-forward)
 
   :config
   (set-face-attribute
@@ -242,31 +289,31 @@ This functions should be added to the hooks of major modes for programming."
 
   (set-face-attribute
    'tabbar-unselected nil
-   :foreground "gray75"
+   :foreground "black"
    :background "gray25"
    :box '(:line-width 1 :color "gray19"))
 
   (set-face-attribute
    'tabbar-highlight nil
-   :foreground "black"
-   :background "orange"
+   :foreground "blue"
+   :background "skyblue"
    :underline nil
    :box '(:line-width 1 :color "gray19" :style nil))
 
   (set-face-attribute
    'tabbar-modified nil
-   :foreground "orange red"
+   :foreground "red"
    :background "gray25"
    :box '(:line-width 1 :color "gray19"))
 
   (set-face-attribute
    'tabbar-selected-modified nil
-   :foreground "orange red"
+   :foreground "red"
    :background "gray19"
    :box '(:line-width 1 :color "gray19"))
 
   (custom-set-variables
-   '(tabbar-separator (quote (0.2))))
+   '(tabbar-separator (quote (0.5))))
 
   ;; Change padding of the tabs
   ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
@@ -306,9 +353,9 @@ This functions should be added to the hooks of major modes for programming."
           (format "mouse-1: switch to buffer %S in group [%s]"
                   (buffer-name (tabbar-tab-value tab)) tabset))
       (format "\
-mouse-1: switch to %S\n\
-mouse-2: kill %S\n\
-mouse-3: Open %S in another window"
+mouse-1 = Select %S\n\
+mouse-2 = Close %S\n\
+mouse-3 = Open %S on new Window"
               (buffer-name (tabbar-tab-value tab))
               (buffer-name (tabbar-tab-value tab))
               (buffer-name (tabbar-tab-value tab)))))

@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -38,17 +39,15 @@ values."
      ;; ----------------------------------------------------------------
      helm
      auto-completion
-     ;; better-defaults
-     ;; emacs-lisp
-     ;; git
+     better-defaults
      markdown
-     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     ;; version-control
+     tabbar
+     indent-guide-global-mode
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -58,7 +57,7 @@ values."
 
 
    dotspacemacs-additional-packages '(
-       beacon monokai-theme flycheck-nim highlight-operators highlight-leading-spaces suggestion-box quickrun highlight-indent-guides nim-mode flycheck-nimsuggest autopair minimap idle-highlight-mode treemacs nyan-mode paradox
+       beacon monokai-theme flycheck-nim highlight-operators highlight-leading-spaces suggestion-box quickrun highlight-indent-guides nim-mode flycheck-nimsuggest minimap idle-highlight-mode treemacs nyan-mode paradox zone-nyan
    )
 
 
@@ -139,8 +138,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Fira Code"
-                               :size 18
+   dotspacemacs-default-font '("FantasqueSansMono Nerd Font Mono"
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -328,31 +327,73 @@ you should place your code here."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(column-number-mode t)
+ '(compilation-message-face (quote default))
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (misterioso)))
  '(custom-safe-themes
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(display-time-mode nil)
+ '(ede-project-directories (quote ("/home/juan/code/nim-hackpad")))
  '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#3C3D37" t)
+ '(font-use-system-font t)
  '(global-ede-mode t)
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100))) t)
  '(horizontal-scroll-bar-mode t)
+ '(indent-guide-global-mode t)
  '(indicate-empty-lines t)
+ '(magit-diff-use-overlays nil)
  '(minimap-minimum-width 5)
  '(minimap-width-fraction 0.01)
  '(package-selected-packages
    (quote
-    (rainbow-mode company-quickhelp company-flx nyan-mode treemacs highlight-blocks idle-highlight-mode highlight-symbol minimap tabbar autopair flycheck-nimsuggest commenter epc ctable concurrent deferred beacon monokai-theme flycheck-nim highlight-operators highlight-leading-spaces suggestion-box quickrun highlight-indent-guides nim-mode uuidgen toc-org restart-emacs org-plus-contrib org-bullets lorem-ipsum hungry-delete google-translate fancy-battery evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu evil vi-tilde-fringe pcre2el hl-todo auto-yasnippet yasnippet origami flycheck-pos-tip pos-tip flycheck mmm-mode markdown-toc markdown-mode helm-company helm-c-yasnippet gh-md fuzzy flyspell-correct-helm flyspell-correct company-statistics company auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights use-package spaceline powerline request rainbow-delimiters popwin persp-mode paradox spinner open-junk-file neotree move-text macrostep linum-relative link-hint indent-guide hydra highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag golden-ratio flx-ido flx fill-column-indicator eyebrowse expand-region exec-path-from-shell smartparens iedit anzu goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (web-mode tagedit slim-mode helm-css-scss company-web web-completion-data rainbow-mode company-quickhelp company-flx nyan-mode treemacs highlight-blocks idle-highlight-mode highlight-symbol minimap tabbar flycheck-nimsuggest commenter epc ctable concurrent deferred beacon monokai-theme flycheck-nim highlight-operators highlight-leading-spaces suggestion-box quickrun highlight-indent-guides nim-mode uuidgen toc-org restart-emacs org-plus-contrib org-bullets lorem-ipsum hungry-delete google-translate fancy-battery pcre2el hl-todo origami flycheck-pos-tip pos-tip flycheck mmm-mode markdown-mode helm-company gh-md fuzzy flyspell-correct-helm flyspell-correct company-statistics company auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights use-package spaceline powerline request rainbow-delimiters popwin persp-mode paradox spinner open-junk-file neotree move-text macrostep linum-relative link-hint indent-guide hydra highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag golden-ratio flx-ido flx fill-column-indicator eyebrowse expand-region exec-path-from-shell smartparens iedit anzu goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+ '(pos-tip-background-color "#FFFACE")
+ '(pos-tip-foreground-color "#272822")
  '(show-paren-mode t)
  '(size-indication-mode t)
- '(tabbar-separator (quote (0.2)))
- '(tool-bar-mode t)
+ '(tabbar-separator (quote (0.5)))
  '(tool-bar-position (quote top))
  '(treemacs-width 15)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
  '(window-divider-default-places (quote right-only)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal :weight normal :height 181 :width normal)))))
+ '(default ((t (:family "FantasqueSansMono Nerd Font Mono" :foundry "PfEd" :slant normal :weight normal :height 236 :width normal)))))
