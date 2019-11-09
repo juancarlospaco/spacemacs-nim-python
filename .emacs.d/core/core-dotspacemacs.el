@@ -107,7 +107,7 @@ configuration in `dotspacemacs/user-config'.")
  with `:variables' keyword (similar to layers). Check the editing styles
  section of the documentation for details on available variables.")
 
-(defvar dotspacemacs-startup-banner 'official
+(defvar dotspacemacs-startup-banner nil
    "Specify the startup banner. Default value is `official', it displays
 the official spacemacs logo. An integer value is the index of text
 banner, `random' chooses a random text banner in `core/banners'

@@ -32,7 +32,7 @@
                        'after 'zemacs/insert-banner-and-buttons)
     (ad-activate 'spacemacs-buffer/insert-banner-and-buttons)
     (load-file (concat spacemacs-start-directory "core/core-spacemacs-buffer.el"))
-    (setq dotspacemacs-startup-banner 'official)
+    (setq dotspacemacs-startup-banner nil)
     (kill-buffer)
     (insert "
 ───█──█─█▀▀█─█▀▀█─█▀▀█─█──█───
@@ -98,7 +98,7 @@
          'help-args (cdr l))))))
 
 (defadvice configuration-layer/initialize (before zemacs/initialize activate)
-  (setq dotspacemacs-startup-banner "~/.emacs.d/core/banners/img/zemacs.png"))
+  (setq dotspacemacs-startup-banner nil))
 
 (defadvice spacemacs-buffer//inject-version
     (around zemacs/inject-version activate)
