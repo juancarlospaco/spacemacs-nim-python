@@ -14,7 +14,6 @@
                                       spacemacs-layouts
                                       spacemacs-editing
                                       spacemacs-editing-visual
-                                      spacemacs-language
                                       spacemacs-misc
                                       spacemacs-ui
                                       spacemacs-ui-visual))

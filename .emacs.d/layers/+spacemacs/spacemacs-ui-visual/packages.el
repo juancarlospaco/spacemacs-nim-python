@@ -12,7 +12,6 @@
 (setq spacemacs-ui-visual-packages
       '(
         (ansi-colors :location built-in)
-        fancy-battery
         fill-column-indicator
         golden-ratio
         hl-todo

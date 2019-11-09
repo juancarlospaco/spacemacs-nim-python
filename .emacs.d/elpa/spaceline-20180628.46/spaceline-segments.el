@@ -321,8 +321,6 @@ The cdr can also be a function that returns a name to use.")
 (defvar conda-env-current-name)
 (defvar erc-modified-channels-object)
 (defvar erc-track-position-in-mode-line)
-(defvar fancy-battery-last-status)
-(defvar fancy-battery-show-percentage)
 (defvar mu4e-alert-mode-line)
 (defvar org-pomodoro-mode-line)
 (defvar pyvenv-virtual-env)
@@ -373,54 +371,6 @@ package."
              erc-modified-channels-object)
     (s-trim erc-modified-channels-object))
   :global-override erc-modified-channels-object)
-
-(defun spaceline--fancy-battery-percentage ()
-  "Return the load percentage or an empty string."
-  (let ((p (cdr (assq ?p fancy-battery-last-status))))
-    (if (and fancy-battery-show-percentage
-             p (not (string= "N/A" p))) (concat " " p "%%") "")))
-
-(defun spaceline--fancy-battery-time ()
-  "Return the remaining time complete load or discharge."
-  (let ((time (cdr (assq ?t fancy-battery-last-status))))
-    (cond
-     ((string= "0:00" time) "")
-     ((string= "N/A" time) "")
-     ((string= time "") "")
-     (t (concat " (" time ")")))))
-
-(defun spaceline--fancy-battery-mode-line ()
-  "Assemble a mode line string for Fancy Battery Mode."
-  (when fancy-battery-last-status
-    (let* ((type (cdr (assq ?L fancy-battery-last-status)))
-           (percentage (spaceline--fancy-battery-percentage))
-           (time (spaceline--fancy-battery-time)))
-      (cond
-       ((string= "on-line" type) " No Battery")
-       ((string= type "") " No Battery")
-       (t (concat (if (string= "AC" type) " AC" "") percentage time))))))
-
-(defun spaceline--fancy-battery-face ()
-  "Return a face appropriate for powerline."
-  (let ((type (cdr (assq ?L fancy-battery-last-status))))
-    (if (and type (string= "AC" type))
-        'fancy-battery-charging
-      (pcase (cdr (assq ?b fancy-battery-last-status))
-        ("!"  'fancy-battery-critical)
-        ("+"  'fancy-battery-charging)
-        ("-"  'fancy-battery-discharging)
-        (_ 'fancy-battery-discharging)))))
-
-(spaceline-define-segment battery
-  "Show battery information.  Requires `fancy-battery-mode' to be enabled.
-
-This segment overrides the modeline functionality of
-`fancy-battery-mode'."
-  (when (bound-and-true-p fancy-battery-mode)
-    (let ((text (spaceline--fancy-battery-mode-line)))
-      (and text (powerline-raw (s-trim text)
-                               (spaceline--fancy-battery-face)))))
-  :global-override fancy-battery-mode-line)
 
 (defvar spaceline-org-clock-format-function
   'org-clock-get-clock-string
