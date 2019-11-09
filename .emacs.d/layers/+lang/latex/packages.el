@@ -23,7 +23,6 @@
     helm-gtags
     smartparens
     typo
-    yasnippet
     which-key
     ))
 
@@ -197,7 +196,7 @@
   (add-hook 'LaTeX-mode-hook 'spacemacs//disable-typo-mode))
 
 (defun latex/post-init-yasnippet ()
-  (add-hook 'LaTeX-mode-hook 'spacemacs/load-yasnippet))
+  )
 
 (defun latex/post-init-which-key ()
   (push '((nil . "\\`latex/font-\\(.+\\)\\'") . (nil . "\\1"))

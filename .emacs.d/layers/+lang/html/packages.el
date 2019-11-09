@@ -27,7 +27,6 @@
     smartparens
     tagedit
     web-mode
-    yasnippet
     ))
 
 (defun html/post-init-company ()
