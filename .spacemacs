@@ -46,8 +46,6 @@ values."
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     tabbar
-     indent-guide-global-mode
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -138,7 +136,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("FantasqueSansMono Nerd Font Mono"
+   dotspacemacs-default-font '("FantasqueSansMono"
                                :size 20
                                :weight normal
                                :width normal
@@ -350,14 +348,13 @@ you should place your code here."
      ("#F309DF" . 85)
      ("#3C3D37" . 100))) t)
  '(horizontal-scroll-bar-mode t)
- '(indent-guide-global-mode t)
  '(indicate-empty-lines t)
  '(magit-diff-use-overlays nil)
  '(minimap-minimum-width 5)
  '(minimap-width-fraction 0.01)
  '(package-selected-packages
    (quote
-    (web-mode tagedit slim-mode helm-css-scss company-web web-completion-data rainbow-mode company-quickhelp company-flx nyan-mode treemacs highlight-blocks idle-highlight-mode highlight-symbol minimap tabbar flycheck-nimsuggest commenter epc ctable concurrent deferred beacon monokai-theme flycheck-nim highlight-operators highlight-leading-spaces suggestion-box quickrun highlight-indent-guides nim-mode uuidgen toc-org restart-emacs org-plus-contrib org-bullets lorem-ipsum hungry-delete google-translate fancy-battery pcre2el hl-todo origami flycheck-pos-tip pos-tip flycheck mmm-mode markdown-mode helm-company gh-md fuzzy flyspell-correct-helm flyspell-correct company-statistics company auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights use-package spaceline powerline request rainbow-delimiters popwin persp-mode paradox spinner open-junk-file neotree move-text macrostep linum-relative link-hint indent-guide hydra highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag golden-ratio flx-ido flx fill-column-indicator eyebrowse expand-region exec-path-from-shell smartparens iedit anzu goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (web-mode tagedit slim-mode helm-css-scss company-web web-completion-data rainbow-mode company-quickhelp company-flx nyan-mode treemacs highlight-blocks idle-highlight-mode highlight-symbol minimap tabbar flycheck-nimsuggest commenter epc ctable concurrent deferred beacon monokai-theme flycheck-nim highlight-operators highlight-leading-spaces suggestion-box quickrun highlight-indent-guides nim-mode uuidgen toc-org restart-emacs org-plus-contrib org-bullets lorem-ipsum hungry-delete pcre2el hl-todo origami flycheck-pos-tip pos-tip flycheck mmm-mode markdown-mode helm-company gh-md fuzzy flyspell-correct-helm flyspell-correct company-statistics company auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights use-package spaceline powerline request rainbow-delimiters popwin persp-mode paradox spinner open-junk-file neotree move-text macrostep linum-relative link-hint indent-guide hydra highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag golden-ratio flx-ido flx fill-column-indicator eyebrowse expand-region exec-path-from-shell smartparens iedit anzu goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(show-paren-mode t)
@@ -396,4 +393,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "FantasqueSansMono Nerd Font Mono" :foundry "PfEd" :slant normal :weight normal :height 236 :width normal)))))
+ '(default ((t (:family "FantasqueSansMono" :foundry "PfEd" :slant normal :weight normal :height 236 :width normal)))))
