@@ -1,4 +1,4 @@
-# spacemacs-nim-python
+# Spacemacs-Nim-Python
 
 http://spacemacs.org with http://python.org and https://nim-lang.org plugins, +stripped down, +eye candy.
 
@@ -8,6 +8,17 @@ http://spacemacs.org with http://python.org and https://nim-lang.org plugins, +s
 
 
 ![Spacemacs](temp.png)
+
+![](https://img.shields.io/github/languages/count/juancarlospaco/spacemacs-nim-python?logoColor=green&style=for-the-badge)
+![](https://img.shields.io/github/languages/top/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/github/stars/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/maintenance/yes/2019?style=for-the-badge)
+![](https://img.shields.io/github/languages/code-size/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/github/issues-raw/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/github/issues-pr-raw/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/github/commit-activity/y/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/github/last-commit/juancarlospaco/spacemacs-nim-python?style=for-the-badge)
+![](https://img.shields.io/liberapay/patrons/juancarlospaco?style=for-the-badge)
 
 
 # Install
@@ -29,3 +40,22 @@ rm nim-emacs.png
 - Only tested on Linux. Pull Requests open to everyone!.
 - It uses GUI, has browser-like Tabs, Folder Tree with icons, Minimap, glowing cursor, and more.
 - The Screenshot is the real actual config it provides.
+
+# Uninstall
+
+- Delete it.
+
+
+# Dependencies
+
+- Emacs.
+
+
+## Stars
+
+![Stars over time](https://starchart.cc/juancarlospaco/spacemacs-nim-python.svg)
+
+![](https://raw.githubusercontent.com/juancarlospaco/plz/master/pepehack.gif "Work in progress!")
+
+
+[  ⬆️  ⬆️  ⬆️  ⬆️  ](#Spacemacs-Nim-Python "Go to top")
