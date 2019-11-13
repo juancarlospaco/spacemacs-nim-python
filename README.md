@@ -49,6 +49,7 @@ rm nim-emacs.png
 # Dependencies
 
 - Emacs.
+- Nim.
 
 
 ## Stars
