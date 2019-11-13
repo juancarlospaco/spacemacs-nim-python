@@ -2,7 +2,7 @@
 
 http://spacemacs.org with http://python.org and https://nim-lang.org plugins, +stripped down, +eye candy.
 
-**Atom Look&Feel but super fast!.**
+**Atom/Sublime Look&Feel but super fast!.**
 
 ![Spacemacs](nim-emacs.png)
 
